@@ -1,0 +1,64 @@
+# Secrets and local configuration
+.env
+.env.*
+!.env.example
+!**/.env.example
+
+# Python environments and generated files
+.venv/
+venv/
+env/
+__pycache__/
+*.py[cod]
+*.pyo
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# JavaScript dependencies and generated output
+node_modules/
+dist/
+build/
+coverage/
+test-results/
+playwright-report/
+
+# IDE and operating-system files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Logs and temporary files
+*.log
+*.tmp
+*.temp
+*.bak
+
+# Local project archives and patch installers
+backups/
+patches/
+AGENTS.md
+nyaya_*_backup_*/
+nyaya_*_fix/
+nyaya_c*.json
+
+# Local model artifacts
+*.gguf
+*.safetensors
+*.bin
+*.pt
+*.pth
+
+# Local database volumes and dumps
+postgres_data/
+*.sql
+*.dump
+
+# Backend diagnostic output
+backend/debug_*.txt
+
+# Downloaded and generated legal corpus
+data/legal/

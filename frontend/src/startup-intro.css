@@ -1,0 +1,247 @@
+.app-shell {
+  min-height: 100vh;
+}
+
+.app-shell--ready {
+  animation: startup-site-reveal .65s ease-out both;
+}
+
+.startup-intro {
+  --startup-india-saffron: #ff9933;
+  --startup-india-navy: #000080;
+  --startup-india-green: #138808;
+  --startup-saffron: #bd6b2d;
+  --startup-navy: #18244a;
+  --startup-gold: #ae8338;
+  --startup-white: #fff;
+
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background: var(--startup-white);
+  animation: startup-intro-exit 1.1s 5.7s cubic-bezier(.6, 0, .4, 1) forwards;
+}
+
+.startup-intro__emblem {
+  width: min(34vw, 250px);
+  position: relative;
+  z-index: 3;
+  opacity: 0;
+  transform: translateY(28px) scale(.78);
+  animation:
+    startup-emblem-enter .75s .1s cubic-bezier(.2, .9, .25, 1.2) forwards,
+    startup-emblem-turn 3.65s .85s cubic-bezier(.55, .06, .22, .98) forwards,
+    startup-emblem-home 1.15s 5.15s cubic-bezier(.65, 0, .25, 1) forwards;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
+
+.startup-emblem {
+  display: block;
+  width: 100%;
+  aspect-ratio: 145.52 / 231.92;
+  background: linear-gradient(
+    104deg,
+    #6d4719 0%,
+    #c99b47 22%,
+    #f1d58f 42%,
+    #a9772b 58%,
+    #e2bd69 76%,
+    #684316 100%
+  );
+  -webkit-mask: url('./assets/emblem-india.svg') center / contain no-repeat;
+  mask: url('./assets/emblem-india.svg') center / contain no-repeat;
+  filter:
+    drop-shadow(-6px 7px 3px rgb(63 39 13 / 21%))
+    drop-shadow(7px 12px 12px rgb(63 39 13 / 20%));
+}
+
+.startup-intro__orbit {
+  position: absolute;
+  width: 138%;
+  aspect-ratio: 1;
+  left: -19%;
+  top: 11%;
+  border: 1px solid color-mix(in srgb, var(--startup-gold) 22%, transparent);
+  border-radius: 50%;
+  transform: rotateX(71deg);
+  animation: startup-orbit-pulse 3.65s .85s ease-in-out both;
+}
+
+.startup-intro__name {
+  position: absolute;
+  z-index: 3;
+  top: calc(50% + 215px);
+  color: var(--startup-navy);
+  letter-spacing: .24em;
+  font-size: 13px;
+  font-weight: 500;
+  opacity: 0;
+  animation:
+    startup-name-in .7s 4.25s ease-out forwards,
+    startup-name-out .5s 5.25s ease-in forwards;
+}
+
+.startup-intro__name strong {
+  color: var(--startup-saffron);
+}
+
+.startup-color-wash {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.startup-color-wash span {
+  position: absolute;
+  left: 50%;
+  top: 46%;
+  width: 34vmax;
+  height: 34vmax;
+  border-radius: 47% 53% 55% 45%;
+  transform: translate(-50%, -50%) scale(0);
+  opacity: .32;
+  filter: blur(18px);
+}
+
+.startup-color-wash__saffron {
+  background: var(--startup-india-saffron);
+  transform-origin: 10% 10%;
+  animation: startup-paint-saffron 1.55s 4.48s cubic-bezier(.35, .02, .18, 1) forwards;
+}
+
+.startup-color-wash__navy {
+  background: var(--startup-india-navy);
+  transform-origin: 90% 15%;
+  animation: startup-paint-navy 1.65s 4.52s cubic-bezier(.35, .02, .18, 1) forwards;
+}
+
+.startup-color-wash__green {
+  background: var(--startup-india-green);
+  transform-origin: 80% 90%;
+  animation: startup-paint-green 1.6s 4.57s cubic-bezier(.35, .02, .18, 1) forwards;
+}
+
+.startup-color-wash__gold {
+  background: color-mix(in srgb, var(--startup-gold) 75%, var(--startup-white));
+  transform-origin: 10% 85%;
+  animation: startup-paint-gold 1.5s 4.62s cubic-bezier(.35, .02, .18, 1) forwards;
+}
+
+.startup-intro__skip {
+  position: absolute;
+  z-index: 5;
+  right: 28px;
+  bottom: 24px;
+  min-height: 44px;
+  border: 0;
+  border-bottom: 1px solid color-mix(in srgb, var(--startup-navy) 35%, transparent);
+  background: transparent;
+  color: var(--startup-navy);
+  font-size: 10px;
+  letter-spacing: .08em;
+  padding: 5px 0;
+  opacity: .65;
+}
+
+.startup-intro__skip:hover {
+  opacity: 1;
+}
+
+@keyframes startup-emblem-enter {
+  to { opacity: 1; transform: translateY(0) scale(1) rotateY(0); }
+}
+
+@keyframes startup-emblem-turn {
+  0% { transform: translateY(0) scale(1) rotateY(0); filter: brightness(1); }
+  15% { transform: translateY(0) scale(1.03) rotateY(30deg); }
+  52% { filter: brightness(1.13); }
+  82% { transform: translateY(0) scale(1.03) rotateY(330deg); }
+  100% { transform: translateY(0) scale(1) rotateY(360deg); filter: brightness(1); }
+}
+
+@keyframes startup-emblem-home {
+  0% { opacity: 1; transform: translateY(0) scale(1) rotateY(360deg); }
+  45% { opacity: .82; transform: translateY(-5vh) scale(.62) rotateY(360deg); }
+  100% { opacity: 0; transform: translate(-42vw, -46vh) scale(.16) rotateY(360deg); }
+}
+
+@keyframes startup-orbit-pulse {
+  0% { opacity: 0; transform: rotateX(71deg) scale(.6); }
+  25%, 75% { opacity: 1; }
+  100% { opacity: 0; transform: rotateX(71deg) scale(1.1); }
+}
+
+@keyframes startup-name-in {
+  to { opacity: 1; transform: translateY(-7px); }
+}
+
+@keyframes startup-name-out {
+  to { opacity: 0; transform: translateY(-15px); }
+}
+
+@keyframes startup-paint-saffron {
+  0% { transform: translate(-50%, -50%) rotate(8deg) scale(0); }
+  70% { transform: translate(-94%, -76%) rotate(28deg) scale(3.8); }
+  100% { transform: translate(-104%, -80%) rotate(35deg) scale(4.7); }
+}
+
+@keyframes startup-paint-navy {
+  0% { transform: translate(-50%, -50%) rotate(-18deg) scale(0); }
+  70% { transform: translate(12%, -68%) rotate(-40deg) scale(3.9); }
+  100% { transform: translate(18%, -72%) rotate(-48deg) scale(4.8); }
+}
+
+@keyframes startup-paint-green {
+  0% { transform: translate(-50%, -50%) rotate(12deg) scale(0); }
+  70% { transform: translate(-5%, 0) rotate(42deg) scale(3.7); }
+  100% { transform: translate(2%, 8%) rotate(53deg) scale(4.7); }
+}
+
+@keyframes startup-paint-gold {
+  0% { transform: translate(-50%, -50%) rotate(-8deg) scale(0); }
+  70% { transform: translate(-92%, 0) rotate(-42deg) scale(3.6); }
+  100% { transform: translate(-102%, 9%) rotate(-50deg) scale(4.7); }
+}
+
+@keyframes startup-intro-exit {
+  0% { opacity: 1; }
+  99% { opacity: 0; visibility: visible; }
+  100% { opacity: 0; visibility: hidden; pointer-events: none; }
+}
+
+@keyframes startup-site-reveal {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: none; }
+}
+
+@media (max-width: 620px) {
+  .startup-intro__emblem {
+    width: min(60vw, 230px);
+  }
+
+  .startup-intro__name {
+    top: calc(50% + 190px);
+  }
+
+  .startup-intro__skip {
+    right: 20px;
+    bottom: 18px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .app-shell--ready,
+  .startup-intro,
+  .startup-intro__emblem,
+  .startup-intro__orbit,
+  .startup-intro__name,
+  .startup-color-wash span {
+    animation-duration: .01ms !important;
+    animation-delay: 0ms !important;
+  }
+}

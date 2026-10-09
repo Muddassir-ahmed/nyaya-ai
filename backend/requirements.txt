@@ -6,3 +6,11 @@ asyncpg
 alembic
 psycopg[binary]
 pgvector
+sentence-transformers
+pypdf
+pwdlib
+PyJWT
+email-validator
+pytest
+pytest-asyncio
+httpx
